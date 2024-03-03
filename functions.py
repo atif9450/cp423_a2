@@ -166,8 +166,14 @@ def get_top_5(query, doc_indices, matrix):
 
 def construct_queries(query, positional_index):
     words = list(positional_index) #get vocabulary
-    vector = np.array([1 if x in query else 0 for x in words]) #construct bit-vector for query
+    binary_vector = np.array([1 if x in query else 0 for x in words]) #construct bit-vector for query
+
+    vector = np.zeros(len(words))
+    for q in query:
+        index = words.index(q)
+        vector[index] += 1
+
     term_freq_vector = vector / vector.sum() #perform term-frequency transformation on query
     log_norm_vector = np.log10(1 + vector) #perform log normalization on query
-    double_norm_vector = 0.5 + 0.5 * (vector / 1) #perform double normalization on query
-    return vector, vector, term_freq_vector, log_norm_vector, double_norm_vector
+    double_norm_vector = 0.5 + 0.5 * (vector / vector.max()) #perform double normalization on query
+    return binary_vector, vector, term_freq_vector, log_norm_vector, double_norm_vector

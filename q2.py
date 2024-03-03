@@ -11,13 +11,13 @@ double_norm_matrix = None
 
 #try to load pre-built files/matrices; construct if failed
 try:
-    docs = pickle.load(open('docs.pkl', 'rb'))
-    pos_index = pickle.load(open('pos_index.pkl', 'rb'))
-    binary_matrix = pickle.load(open('binary.pkl', 'rb'))
-    raw_count_matrix = pickle.load(open('raw_count.pkl', 'rb'))
-    term_freq_matrix = pickle.load(open('term_freq.pkl', 'rb'))
-    log_norm_matrix = pickle.load(open('log_norm.pkl', 'rb'))
-    double_norm_matrix = pickle.load(open('double_norm.pkl', 'rb'))
+    docs = pickle.load(open('pkl/docs.pkl', 'rb'))
+    pos_index = pickle.load(open('pkl/pos_index.pkl', 'rb'))
+    binary_matrix = pickle.load(open('pkl/binary.pkl', 'rb'))
+    raw_count_matrix = pickle.load(open('pkl/raw_count.pkl', 'rb'))
+    term_freq_matrix = pickle.load(open('pkl/term_freq.pkl', 'rb'))
+    log_norm_matrix = pickle.load(open('pkl/log_norm.pkl', 'rb'))
+    double_norm_matrix = pickle.load(open('pkl/double_norm.pkl', 'rb'))
 except:
     docs, pos_index = construct_positional_index('data/')
     binary_matrix = construct_binary_tfidf(docs, pos_index)
@@ -26,13 +26,13 @@ except:
     log_norm_matrix = construct_log_norm_tfidf(docs, pos_index)
     double_norm_matrix = construct_double_norm_tfidf(docs, pos_index)
 
-    pickle.dump(docs, open('docs.pkl', 'wb'))
-    pickle.dump(pos_index, open('pos_index.pkl', 'wb'))
-    pickle.dump(binary_matrix, open('binary.pkl', 'wb'))
-    pickle.dump(raw_count_matrix, open('raw_count.pkl', 'wb'))
-    pickle.dump(term_freq_matrix, open('term_freq.pkl', 'wb'))
-    pickle.dump(log_norm_matrix, open('log_norm.pkl', 'wb'))
-    pickle.dump(double_norm_matrix, open('double_norm.pkl', 'wb'))
+    pickle.dump(docs, open('pkl/docs.pkl', 'wb'))
+    pickle.dump(pos_index, open('pkl/pos_index.pkl', 'wb'))
+    pickle.dump(binary_matrix, open('pkl/binary.pkl', 'wb'))
+    pickle.dump(raw_count_matrix, open('pkl/raw_count.pkl', 'wb'))
+    pickle.dump(term_freq_matrix, open('pkl/term_freq.pkl', 'wb'))
+    pickle.dump(log_norm_matrix, open('pkl/log_norm.pkl', 'wb'))
+    pickle.dump(double_norm_matrix, open('pkl/double_norm.pkl', 'wb'))
 
 query = input("Please input your query: ") #get user input query
 print('\n')
