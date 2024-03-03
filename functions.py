@@ -37,8 +37,11 @@ def construct_positional_index(path_to_files):
                     array = np.zeros(len(files))
                     positional_index.update({word: [0, array]})
 
-                positional_index[word][0] += 1 #update document frequency of term
                 positional_index[word][1][index] += 1 #update term frequency for corresponding document
+
+            words = list(set(words))
+            for word in words:
+                positional_index[word][0] += 1 #update document frequency for each term
         index += 1 #update index for document enumeration
     
     return doc_indices, positional_index
@@ -152,7 +155,7 @@ def get_top_5(query, doc_indices, matrix):
         sim = cosine_sim(query, doc_vector.T) #calculate cosine similarity of query and document vectors
         sims.update({i: sim}) #update similarities dictionary
 
-    sims = dict(sorted(sims.items(), key=lambda item: item[1])) #sort similarities-dictionary on values
+    sims = dict(sorted(sims.items(), key=lambda item: item[1], reverse=True)) #sort similarities-dictionary on values
     indices = list(sims.keys()) #get document indices from sorted dictionary
     indices = indices[:5] #only keep first 5 document indices
 
