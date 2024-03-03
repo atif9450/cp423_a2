@@ -1,3 +1,4 @@
 data
 text.txt
 __pycache__
+*.pkl
