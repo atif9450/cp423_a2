@@ -174,8 +174,11 @@ def construct_queries(query, positional_index):
     #calculate raw-count query vector
     vector = np.zeros(len(words))
     for q in query:
-        index = words.index(q)
-        vector[index] += 1
+        try:
+            index = words.index(q)
+            vector[index] += 1
+        except:
+            pass
 
     term_freq_vector = vector / vector.sum() #perform term-frequency transformation on query
     log_norm_vector = np.log10(1 + vector) #perform log normalization on query
