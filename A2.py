@@ -104,7 +104,7 @@ for root, dirs, files in os.walk(folder):
                         #list.append(w)
                         #appends the rest of the words other than the phrase query to the list to filer their positions later 
                         #to get the phrase query positions comment out the line below
-                        ###############################k.append(w)
+                        k.append(w)
                 j +=1
                 list.append(k)
             else:
